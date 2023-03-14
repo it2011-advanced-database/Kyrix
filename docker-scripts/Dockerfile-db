@@ -4,6 +4,11 @@ FROM asah/pg11-plv8 as plv8
 FROM postgres:11 as pg-plv8
 ARG DEBIAN_FRONTEND=noninteractive
 
+
+RUN rm /etc/apt/sources.list.d/pgdg.list
+RUN apt-get update && apt-get -y install apt-transport-https
+RUN echo "deb https://apt-archive.postgresql.org/pub/repos/apt/ stretch-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
 # plv8 is dynamically linked
 RUN apt-get update -qq >/dev/null && apt-get install -qq --no-install-recommends  libc++1 >/dev/null && \
     rm -rf /var/lib/apt/lists/* >/dev/null && apt-get -qq autoremove >/dev/null && apt-get -qq clean >/dev/null
