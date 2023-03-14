@@ -6,7 +6,7 @@ const renderers = require("./renderers");
 // construct a project
 var p = new Project("real_estate", "../../../config.txt");
 p.addRenderingParams(renderers.renderingParams);
-p.addStyles("listings.css");
+p.addStyles("listing.css");
 
 // set up ssv
 var query ="select * from listings;";
